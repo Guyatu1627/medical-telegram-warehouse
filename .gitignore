@@ -52,3 +52,6 @@ medical_warehouse/logs/
 # OS files
 .DS_Store
 Thumbs.db
+
+data/
+.tmp_dagster*/
