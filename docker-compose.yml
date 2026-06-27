@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: warehouse_db
+    restart: always
+    environment:
+      POSTGRES_DB: medical_warehouse
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: medical_api
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=medical_warehouse
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres_password
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

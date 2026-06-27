@@ -1,0 +1,11 @@
+{
+  "python.formatting.provider": "black",
+  "python.analysis.extraPaths": ["./src", "./api"],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/target": true
+  }
+}

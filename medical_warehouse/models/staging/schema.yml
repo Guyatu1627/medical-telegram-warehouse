@@ -1,0 +1,66 @@
+-- Staging schema source definitions and tests
+
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: "Raw data loaded from the Telegram data lake JSON files"
+    tables:
+      - name: telegram_messages
+        description: "Raw Telegram messages scraped from Ethiopian medical channels"
+        columns:
+          - name: message_id
+            description: "Unique identifier for the message"
+          - name: channel_name
+            description: "Name of the Telegram channel"
+          - name: message_date
+            description: "Timestamp when the message was posted"
+          - name: message_text
+            description: "Full text content of the message"
+          - name: has_media
+            description: "Whether the message has media attached"
+          - name: image_path
+            description: "Local file path of the downloaded image"
+          - name: views
+            description: "Number of views on the message"
+          - name: forwards
+            description: "Number of times the message was forwarded"
+      - name: yolo_detections
+        description: "YOLO object detection results for images downloaded from Telegram"
+        columns:
+          - name: message_id
+            description: "Foreign key to telegram_messages"
+          - name: channel_name
+            description: "Channel the image belongs to"
+          - name: detected_class
+            description: "YOLO detected object class"
+          - name: confidence_score
+            description: "Detection confidence (0-1)"
+          - name: image_category
+            description: "Classified category: promotional, product_display, lifestyle, other"
+
+models:
+  - name: stg_telegram_messages
+    description: "Cleaned and standardized telegram messages from the raw layer"
+    columns:
+      - name: message_id
+        description: "Cleaned unique message identifier"
+        data_tests:
+          - not_null
+      - name: channel_name
+        description: "Normalized channel name"
+        data_tests:
+          - not_null
+      - name: message_date
+        description: "Properly cast message timestamp"
+        data_tests:
+          - not_null
+      - name: views
+        description: "Non-negative view count"
+      - name: forwards
+        description: "Non-negative forward count"
+      - name: message_length
+        description: "Calculated length of the message text"
+      - name: has_image
+        description: "Flag indicating whether an image was downloaded"

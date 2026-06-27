@@ -1,0 +1,5 @@
+2026-06-27 10:56:18,057 [INFO] Generating mock data...
+2026-06-27 10:56:18,060 [INFO] Successfully wrote 5 mock messages to data\raw\telegram_messages\2026-06-27\CheMed1.json
+2026-06-27 10:56:18,062 [INFO] Successfully wrote 5 mock messages to data\raw\telegram_messages\2026-06-27\lobelia4cosmetics.json
+2026-06-27 10:56:18,064 [INFO] Successfully wrote 5 mock messages to data\raw\telegram_messages\2026-06-27\tikvahpharma.json
+2026-06-27 10:56:18,064 [INFO] Mock data generation completed successfully.
