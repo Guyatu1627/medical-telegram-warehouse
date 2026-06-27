@@ -10,3 +10,4 @@ httpx>=0.24.0
 telethon>=1.35.0
 dagster>=1.6.0
 dagster-webserver>=1.6.0
+ultralytics>=8.0.0
